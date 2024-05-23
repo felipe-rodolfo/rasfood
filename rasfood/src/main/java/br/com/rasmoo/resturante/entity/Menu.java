@@ -5,8 +5,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "dishes")
-public class Dish {
+@Table(name = "menu")
+public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -14,12 +14,15 @@ public class Dish {
     private String name;
     private String description;
 
-    private BigDecimal dishValue;
+    private BigDecimal MenuValue;
+
+    @ManyToOne
+    private Category category;
 
     @Column(name = "registration_date")
     private LocalDateTime registerDate = LocalDateTime.now();
 
-    public Dish() {
+    public Menu() {
     }
 
     public Integer getId() {
@@ -46,12 +49,12 @@ public class Dish {
         this.description = description;
     }
 
-    public BigDecimal getDishValue() {
-        return dishValue;
+    public BigDecimal getMenuValue() {
+        return MenuValue;
     }
 
-    public void setDishValue(BigDecimal value) {
-        this.dishValue = value;
+    public void setMenuValue(BigDecimal value) {
+        this.MenuValue = value;
     }
 
     public LocalDateTime getRegisterDate() {
@@ -68,7 +71,7 @@ public class Dish {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", value=" + dishValue +
+                ", value=" + MenuValue +
                 ", registerDate=" + registerDate +
                 '}';
     }
